@@ -45,8 +45,10 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AC_SUBST( GXX, ["no"] )
 AC_SUBST(noinst_LIBRARIES)
 
+AC_LANG([C++])
+AC_PROG_CXX
+AC_CXX_COMPILE_STDCXX_14
 # Checks for programs.
-AC_PROG_CXX(g++ CC c++ cxx)
 AM_PROG_AR
 AC_PATH_PROG(AR, ar, no)
 if [[ $AR = "no" ]] ; then
@@ -86,6 +88,8 @@ CPPFLAGS="$CPPFLAGS $cppflag"
 #CXXFLAGS="$CXXFLAGS $cxxflag"
 CXXFLAGS="$cxxflag"
 
+CXXFLAGS="$CXXFLAGS -std=gnu++14"
+CFLAGS="$CFLAGS -std=gnu11"
 # Check compiler and use -Wall if gnu.
 if [test $GXX = "yes" ;] then
   AC_SUBST( cxxflag, ["-Wall -Wextra"] )
